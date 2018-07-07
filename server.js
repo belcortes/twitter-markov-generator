@@ -1,8 +1,11 @@
 let express = require('express');
-var router = express.Router();
+var bodyParser = require('body-parser');
 let Twit = require('twit');
 
 const app = express();
+var port = process.env.PORT || 4000;
+// support json encoded bodies
+app.use(bodyParser.json());
 
 // config for authenticating with Twitter
 const config = {
@@ -15,28 +18,30 @@ const config = {
 var T = new Twit(config)
 
 // params for twitter endpoint
-var params = {
-  user_id: 'rustyrockets',
-  screen_name: 'rustyrockets'
+let username;
+let dataP;
+app.post('/post', function(req, res) {
+    username = req.body.user_name;
+    console.log('GOT A REQUEST');
+    console.log(username);
+    res.json({status : 'success'});
+})
+
+// middleware for express - updating the username whenever user inputs new twitter handle
+var dataOutput = function (req, res, next) {
+  T.get('statuses/user_timeline', {screen_name: username}, (err, data, res) => {
+    console.log(res)
+    console.log(data)
+    dataP = data
+  });
+  console.log(dataP)
+  req.dataOutput = dataP
+  next()
 }
 
-T.get('statuses/user_timeline', params,searchedData);
-let dataP
+app.use(dataOutput)
 
-// callback function for twitter endpoint
-function searchedData(err, data, response) {
-  dataP = data
-}
-console.log(JSON.stringify(dataP))
-
-// var corsOption = {
-//   origin: true,
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   credentials: true,
-//   exposedHeaders: ['x-auth-token']
-// };
-// app.use(cors(corsOption));
-
-app.get('/data', (req, res) => res.send(dataP));
-
-app.listen(4000, () => console.log('markov app running'));
+app.listen(port, () => console.log('markov app running'));
+app.get('/data', (req, res) => {
+  res.send(req.dataOutput)
+});
