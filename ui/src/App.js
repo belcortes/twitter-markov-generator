@@ -1,37 +1,38 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class App extends Component {
+import Search from './components/Search'
+import TweetList from './components/TweetList'
 
-  sendData = () => {
+class App extends Component {
+  state = {
+    tweets: []
+  }
+
+  handleSubmit = (user_handle) => {
+    console.log(user_handle)
     axios.post('/post', {
-        user_name: 'Cmdr_Hadfield'
+        user_name: user_handle
       })
       .then(response => {
-        this.retrieveUser();
+        console.log(response)
+        this.setState({tweets: response.data})
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  retrieveUser = () => {
-    axios.get('/data')
-      .then((response) => {
-        console.log('yello')
-        console.log(response.data)
-      })
-      .catch((error) => {
-          console.log('Error retrieving')
-          console.log(error)
-      })
-  }
-
   render() {
     return (
       <div className="App">
-        hello
-        <button onClick={() => this.sendData()}>click me</button>
+        <Search handleSubmit={this.handleSubmit} />
+        {
+          this.state.tweets.length === 0 ?
+          undefined :
+          <TweetList tweets={this.state.tweets} />
+        }
+        {console.log(this.state.tweets)}
       </div>
     );
   }
