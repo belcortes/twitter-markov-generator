@@ -2,7 +2,7 @@ import React from 'react';
 
 const Tweet = (props) => {
   return (
-    <li>{props.tweet.text}</li>
+    <li><b>{props.tweet.username}</b><br/>{props.tweet.content}</li>
   )
 }
 

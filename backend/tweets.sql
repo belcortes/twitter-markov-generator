@@ -5,9 +5,9 @@ CREATE DATABASE tweets;
 
 CREATE TABLE tweet (
   ID SERIAL PRIMARY KEY,
-  user VARCHAR,
-  tweet VARCHAR
+  username VARCHAR,
+  content VARCHAR
 );
 
-INSERT INTO tweet (user, tweet)
+INSERT INTO tweet (username, content)
   VALUES ('Tyler', 'hello there my name is tyler @here');
