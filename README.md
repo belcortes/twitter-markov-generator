@@ -13,12 +13,13 @@ An app that generates a fake tweet based on the last 50 tweets of a given twitte
 1. Open terminal
 2. ```$ git clone https://github.com/belcortes/twitter-markov-generator```
 3. ```$ cd twitter-markov-generator```
-3. ```$ yarn start```
-4. Open new terminal window or tab (in same directory)
-5. ```$ cd ui```
-6. ```$ yarn start```
-7. In your browser navigate to ```localhost:3000```
-8. Follow instructions on page, and voila!
+4. ```$ yarn start```
+5. ```$ psql -f backend/tweets.sql```
+6. Open new terminal window or tab (in same directory)
+7. ```$ cd ui```
+8. ```$ yarn start```
+9. In your browser navigate to ```localhost:3000```
+10. Follow instructions on page, and voila!
 
 ## Stack
 - [Express.js](https://expressjs.com/)
