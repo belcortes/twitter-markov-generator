@@ -31,6 +31,7 @@ An app that generates a fake tweet based on the last 50 tweets of a given twitte
 - [Title Generator Using Markov Chains](https://www.soliantconsulting.com/blog/title-generator-using-markov-chains)
 - [Create a Twitter Politician Bot With Markov Chains](https://hackernoon.com/create-a-twitter-politician-bot-with-markov-chains-node-js-and-stdlib-14df8cc1c68a)
 - [Twitter Markov Chain](https://github.com/notoriaga/twitter-markov-chain)
+- [Node and Postgres](http://mherman.org/blog/2016/03/13/designing-a-restful-api-with-node-and-postgres/)
 
 
 ## Next Steps
