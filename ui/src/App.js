@@ -20,7 +20,7 @@ class App extends Component {
       .then(response => {
         this.setState({
           tweets: response.data,
-          fakeTweet: makeTweet(3, response.data),
+          fakeTweet: makeTweet(response.data),
           username: response.data[0].user.name
         })
 
