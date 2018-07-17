@@ -1,7 +1,8 @@
+require('dotenv').config();
 let express = require('express');
 let bodyParser = require('body-parser');
 let Twit = require('twit');
-require('dotenv').config();
+
 
 let db = require('./queries');
 
